@@ -27,7 +27,7 @@ export default function TelaCadastro() {
             password,
             checkPassword
         }
-        const promise = axios.post("http://localhost/5000/participants", body)
+        const promise = axios.post("http://localhost:3000/cadastro", body)
         promise
             .then(() => navigate("/login"))
             .catch(erro => erroCadastro(erro))
@@ -40,17 +40,17 @@ export default function TelaCadastro() {
             <Logo>MyWallet</Logo>
             <form onSubmit={cadastrar}>
                 <Dados>
-                    <Input type="text" placeholder="Nome" value={name} onClange={e => setName(e.target.value)} />
-                    <Input type="text" placeholder="Email" value={email} onClange={e => setEmail(e.target.value)} />
-                    <Input type="password" placeholder="Senha" value={password} onClange={e => setPassword(e.target.value)} />
-                    <Input type="password" placeholder="Confirme sua senha" value={checkPassword} onClange={e => setCheckPassword(e.target.value)} />
+                    <Input type="text" placeholder="Nome" value={name} onChange={e => setName(e.target.value)} />
+                    <Input type="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+                    <Input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} />
+                    <Input type="password" placeholder="Confirme sua senha" value={checkPassword} onChange={e => setCheckPassword(e.target.value)} />
                 </Dados>
                 <Button type="submit" >
                     Cadastrar
                 </Button>
         </form>
         <Link to={"/login"}>
-            <IrParaCadastro>Já tem uma conta? Faça login!</IrParaCadastro>
+            <IrParaLogin>Já tem uma conta? Faça login!</IrParaLogin>
         </Link>
         </Tela>
 
@@ -88,7 +88,7 @@ const Input = styled.input`
     border: 1px solid #FFFFFF;
     border-radius: 5px;
 
-    &:placeholder {
+    &::placeholder {
         color: #000000;
         font-size: 20px;
     }
@@ -97,15 +97,16 @@ const Input = styled.input`
 const Button = styled.button`
     background-color: #A328D6;
     width: 326px;
-    height: 58px;
+    height: 46px;
     border-radius: 5px;
     font-size: 20px;
     font-weight: 400;
     color: #FFFFFF;
     cursor: pointer;
     margin-left: 20px;
+    border: 1px solid #A328D6;
 `
-const IrParaCadastro = styled.div`
+const IrParaLogin = styled.div`
     font-size: 15px;
     color: #FFFFFF;
     text-decoration: underline;
